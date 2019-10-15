@@ -1,4 +1,5 @@
 # Injector
+[![](https://jitpack.io/v/eugeneek/Injector.svg)](https://jitpack.io/#eugeneek/Injector)
 
 Simple two-classes DI container with scopes. Written in Kotlin but Java-friendly. 
 
