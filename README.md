@@ -10,18 +10,18 @@ Inherit `Scope` class to create scoped container for your instances. Create inst
 For example, let's create scope, that will contains object `ResourceManager`. It responsible for providing text resources through  Android SDK's `Resources` class.
 
 ```kotlin
-    class MainScope(  
-        private val context: Context  
-    ): Scope() {  
-      
-        override fun init() {  
-	        // initialization
-	        val resourceManager = ResourceManager(context.resources)
-	        
-	        // binding
-            bind(resourceManager)
-        }  
-    }
+class MainScope(  
+    private val context: Context  
+): Scope() {  
+  
+    override fun init() {  
+        // initialization
+        val resourceManager = ResourceManager(context.resources)
+        
+        // binding
+        bind(resourceManager)
+    }  
+}
 ```
 
 ### Open/close scope
@@ -59,14 +59,32 @@ class Mapper(resourceManager: ResourceManager)
 
 class ChildScope: Scope() {  
       
-        override fun init() {  
-	        // initialization
-	        val mapper = Mapper(
-		        resourceManager = get()
-		    )
-	        
-	        // binding
-            bind(mapper)
-        }  
+    override fun init() {  
+        // initialization
+        val mapper = Mapper(
+            resourceManager = get()
+        )
+        
+        // binding
+        bind(mapper)
+    }  
+}
+```
+### Add to project
+Distributed by JitPack
+Step 1. Add the JitPack repository to your build file
+Add it in your root build.gradle at the end of repositories:
+```groovy
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
     }
+} 
+```
+Step 2. Add the dependency
+```groovy
+dependencies {
+    implementation 'com.github.eugeneek:injector:1.0.1'
+}
 ```
